@@ -13,16 +13,13 @@ import java.util.ArrayList;
  * @author Richard
  */
 public class Mantenimiento extends Usuario implements Serializable{
-    ArrayList <ATM> atms;
+    ArrayList <ATM> atms = new ArrayList();
 
     public Mantenimiento() {
     }
 
-    
-    
-    public Mantenimiento(ArrayList<ATM> atms, int id, String contra, String primer, String segundo, String apellido_uno, String apellido_dos, int nacimiento, int afilicion, ArrayList<Transaccion> trasacciones) {
-        super(id, contra, primer, segundo, apellido_uno, apellido_dos, nacimiento, afilicion, trasacciones);
-        this.atms = atms;
+    public Mantenimiento(int id, String contra, String primer, String segundo, String apellido_uno, String apellido_dos, int nacimiento, int afilicion) {
+        super(id, contra, primer, segundo, apellido_uno, apellido_dos, nacimiento, afilicion);
     }
 
     public ArrayList<ATM> getAtms() {

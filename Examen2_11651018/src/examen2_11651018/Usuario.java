@@ -21,12 +21,12 @@ public class Usuario implements Serializable{
     private String apellido_dos;
     private int nacimiento;
     private int afilicion;
-    private ArrayList <Transaccion> trasacciones;
+    private ArrayList <Transaccion> trasacciones = new ArrayList();
 
     public Usuario() {
     }
-    
-    public Usuario(int id, String contra, String primer, String segundo, String apellido_uno, String apellido_dos, int nacimiento, int afilicion, ArrayList<Transaccion> trasacciones) {
+
+    public Usuario(int id, String contra, String primer, String segundo, String apellido_uno, String apellido_dos, int nacimiento, int afilicion) {
         this.id = id;
         this.contra = contra;
         this.primer = primer;
@@ -35,8 +35,9 @@ public class Usuario implements Serializable{
         this.apellido_dos = apellido_dos;
         this.nacimiento = nacimiento;
         this.afilicion = afilicion;
-        this.trasacciones = trasacciones;
     }
+    
+    
     
     
 

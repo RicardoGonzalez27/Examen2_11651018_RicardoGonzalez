@@ -13,15 +13,18 @@ import java.util.ArrayList;
  * @author Richard
  */
 public class Cliente extends Usuario implements Serializable{
-    ArrayList <Cuenta> cuentas;
+    ArrayList <Cuenta> cuentas = new ArrayList();
 
     public Cliente() {
     }
 
-    public Cliente(ArrayList<Cuenta> cuentas, int id, String contra, String primer, String segundo, String apellido_uno, String apellido_dos, int nacimiento, int afilicion, ArrayList<Transaccion> trasacciones) {
-        super(id, contra, primer, segundo, apellido_uno, apellido_dos, nacimiento, afilicion, trasacciones);
-        this.cuentas = cuentas;
+    public Cliente(int id, String contra, String primer, String segundo, String apellido_uno, String apellido_dos, int nacimiento, int afilicion) {
+        super(id, contra, primer, segundo, apellido_uno, apellido_dos, nacimiento, afilicion);
     }
+
+    
+
+    
 
     public ArrayList<Cuenta> getCuentas() {
         return cuentas;

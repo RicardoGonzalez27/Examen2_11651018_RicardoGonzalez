@@ -19,6 +19,7 @@ public class ATM {
 
     public ATM() {
     }
+    
     public ATM(String ubicacion, int id, int año, String mantenimiento, int cien, int quinientos) {
         this.ubicacion = ubicacion;
         this.id = id;

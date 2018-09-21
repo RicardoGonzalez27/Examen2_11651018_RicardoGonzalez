@@ -5,6 +5,8 @@
  */
 package examen2_11651018;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Richard
@@ -27,42 +29,202 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        CreacionUsuario = new javax.swing.JDialog();
+        panel_usuarios = new javax.swing.JPanel();
+        usuario_nombre = new javax.swing.JTextField();
+        usuario_nombredos = new javax.swing.JTextField();
+        usuario_apellido = new javax.swing.JTextField();
+        usuario_apellidodos = new javax.swing.JTextField();
+        usuario_id = new javax.swing.JTextField();
+        usuario_contraseña = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        cb_tipo = new javax.swing.JComboBox<>();
+        nuevousuario = new javax.swing.JButton();
+        usuario_nacimiento = new javax.swing.JSpinner();
+        CreacionATM = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        newatm_ubicacion = new javax.swing.JTextField();
+        newatm_id = new javax.swing.JTextField();
+        newatm_año = new javax.swing.JTextField();
+        newatm_mantenimiento = new javax.swing.JTextField();
+        newatm_cien = new javax.swing.JTextField();
+        newatm_quin = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
+
+        panel_usuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        usuario_nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuario_nombreActionPerformed(evt);
+            }
+        });
+        panel_usuarios.add(usuario_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 170, -1));
+        panel_usuarios.add(usuario_nombredos, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 170, -1));
+        panel_usuarios.add(usuario_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 170, -1));
+        panel_usuarios.add(usuario_apellidodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 170, -1));
+        panel_usuarios.add(usuario_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 170, -1));
+        panel_usuarios.add(usuario_contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 170, -1));
+
+        jLabel2.setText("Nombre");
+        panel_usuarios.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+
+        jLabel3.setText("Segundo Nombre");
+        panel_usuarios.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+
+        jLabel4.setText("Apellido");
+        panel_usuarios.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+
+        jLabel5.setText("Segundo Apellido");
+        panel_usuarios.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+
+        jLabel6.setText("ID");
+        panel_usuarios.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+
+        jLabel7.setText("Año de Nacimiento");
+        panel_usuarios.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
+
+        jLabel8.setText("Contraseña");
+        panel_usuarios.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
+
+        jLabel9.setText("NUEVO USUARIO");
+        panel_usuarios.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, 20));
+
+        cb_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Mantenimiento" }));
+        panel_usuarios.add(cb_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 270, -1));
+
+        nuevousuario.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        nuevousuario.setText("Crear");
+        nuevousuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nuevousuarioMouseClicked(evt);
+            }
+        });
+        panel_usuarios.add(nuevousuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 260, 100));
+
+        usuario_nacimiento.setModel(new javax.swing.SpinnerNumberModel(1900, 1900, 2000, 1));
+        panel_usuarios.add(usuario_nacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 170, -1));
+
+        javax.swing.GroupLayout CreacionUsuarioLayout = new javax.swing.GroupLayout(CreacionUsuario.getContentPane());
+        CreacionUsuario.getContentPane().setLayout(CreacionUsuarioLayout);
+        CreacionUsuarioLayout.setHorizontalGroup(
+            CreacionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panel_usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        CreacionUsuarioLayout.setVerticalGroup(
+            CreacionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panel_usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jPanel3.setMinimumSize(new java.awt.Dimension(200, 200));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        newatm_ubicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newatm_ubicacionActionPerformed(evt);
+            }
+        });
+        jPanel3.add(newatm_ubicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 170, -1));
+        jPanel3.add(newatm_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 170, -1));
+        jPanel3.add(newatm_año, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 170, -1));
+        jPanel3.add(newatm_mantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 170, -1));
+        jPanel3.add(newatm_cien, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 170, -1));
+        jPanel3.add(newatm_quin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 170, -1));
+
+        jLabel18.setText("Ubicacion");
+        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+
+        jLabel19.setText("ID");
+        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+
+        jLabel20.setText("Año");
+        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+
+        jLabel21.setText("Mantenimiento");
+        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+
+        jLabel22.setText("Billetes Quinientos");
+        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+
+        jLabel23.setText("Billetes Cien");
+        jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
+
+        jLabel25.setText("NUEVO ATM");
+        jPanel3.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, 20));
+
+        jButton6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jButton6.setText("Crear");
+        jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 260, 100));
+
+        javax.swing.GroupLayout CreacionATMLayout = new javax.swing.GroupLayout(CreacionATM.getContentPane());
+        CreacionATM.getContentPane().setLayout(CreacionATMLayout);
+        CreacionATMLayout.setHorizontalGroup(
+            CreacionATMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CreacionATMLayout.createSequentialGroup()
+                .addGap(249, 249, 249)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        CreacionATMLayout.setVerticalGroup(
+            CreacionATMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CreacionATMLayout.createSequentialGroup()
+                .addGap(259, 259, 259)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setText("Creacion de Usuario");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, -1));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 320, -1));
 
         jButton2.setText("Creacion de ATM");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 130, -1));
-
-        jButton3.setText("Salir");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, -1, -1));
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 320, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setText("BANCO LOS CHAMBEADORES");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         jTabbedPane1.addTab("Creacion", jPanel1);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextField1.setText("jTextField1");
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, -1, -1));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 110, 430, -1));
 
         jTextField2.setText("jTextField2");
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, -1, -1));
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 200, 430, -1));
 
         jTabbedPane1.addTab("Acceso", jPanel2);
 
@@ -79,6 +241,53 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void usuario_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuario_nombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usuario_nombreActionPerformed
+
+    private void newatm_ubicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newatm_ubicacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newatm_ubicacionActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        CreacionUsuario.setModal(true);
+        CreacionUsuario.pack();
+        CreacionUsuario.setLocationRelativeTo(this);
+        CreacionUsuario.setVisible(true);
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        CreacionATM.setModal(true);
+        CreacionATM.pack();
+        CreacionATM.setLocationRelativeTo(this);
+        CreacionATM.setVisible(true);
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void nuevousuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevousuarioMouseClicked
+
+        try {
+            String nombre = usuario_nombre.getText();
+            String nombredos = usuario_nombredos.getText();
+            String apellido = usuario_apellido.getText();
+            String apellidodos = usuario_apellidodos.getText();
+            String contraseña = usuario_contraseña.getText();
+            int Nacimiento = (int) usuario_nacimiento.getValue();
+            int id = Integer.parseInt(usuario_id.getText());
+            int afiliacion = 2018;
+
+            if (cb_tipo.getSelectedItem().equals("Cliente")) {
+                Cliente u = new Cliente(id, contraseña, nombre, nombredos, apellido, apellidodos, Nacimiento, afiliacion);
+                
+            } else if (cb_tipo.getSelectedItem().equals("Mantenimiento")) {
+                
+                Mantenimiento m = new Mantenimiento(id, contraseña, nombre, nombredos, apellido, apellidodos, Nacimiento, afiliacion);
+            }
+        } catch (Exception e) {
+
+        }
+
+    }//GEN-LAST:event_nuevousuarioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -116,14 +325,50 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog CreacionATM;
+    private javax.swing.JDialog CreacionUsuario;
+    private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField newatm_año;
+    private javax.swing.JTextField newatm_cien;
+    private javax.swing.JTextField newatm_id;
+    private javax.swing.JTextField newatm_mantenimiento;
+    private javax.swing.JTextField newatm_quin;
+    private javax.swing.JTextField newatm_ubicacion;
+    private javax.swing.JButton nuevousuario;
+    private javax.swing.JPanel panel_usuarios;
+    private javax.swing.JTextField usuario_apellido;
+    private javax.swing.JTextField usuario_apellidodos;
+    private javax.swing.JTextField usuario_contraseña;
+    private javax.swing.JTextField usuario_id;
+    private javax.swing.JSpinner usuario_nacimiento;
+    private javax.swing.JTextField usuario_nombre;
+    private javax.swing.JTextField usuario_nombredos;
     // End of variables declaration//GEN-END:variables
+
+    ArrayList <Integer> ids = new ArrayList();
 }
