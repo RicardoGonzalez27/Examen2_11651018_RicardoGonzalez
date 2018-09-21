@@ -22,11 +22,20 @@ public class administrarbinario {
      *
      * @author Richard
      */
-    ArrayList<Usuario> usuarios = new ArrayList();
+    ArrayList <Usuario> usuarios = new ArrayList();
+    ArrayList <ATM> ATMs = new ArrayList();
     private File archivo;
 
     public administrarbinario(String path) {
         archivo = new File(path);
+    }
+
+    public ArrayList<ATM> getATMs() {
+        return ATMs;
+    }
+
+    public void setATMs(ArrayList<ATM> ATMs) {
+        this.ATMs = ATMs;
     }
 
     public ArrayList<Usuario> getUsuarios() {
@@ -53,8 +62,12 @@ public class administrarbinario {
     public void setUsuarios(Usuario u) {
         this.usuarios.add(u);
     }
+    
+    public void setATM(ATM a) {
+        this.ATMs.add(a);
+    }
 
-    public void cargarArchivo() {
+    public void cargarArchivoUsuario() {
         try {
             usuarios = new ArrayList();
             Usuario temp;
@@ -76,13 +89,55 @@ public class administrarbinario {
         }
     }
 
-    public void escribirArchivo() {
+    public void escribirArchivoUsuario() {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
             for (Usuario t : usuarios) {
+                bw.writeObject(t);
+            }
+            bw.flush();
+        } catch (Exception e) {
+        } finally {
+            try {
+                bw.close();
+                fw.close();
+            } catch (Exception e) {
+            }
+        }
+    }
+    
+    public void cargarArchivoATM() {
+        try {
+            ATMs = new ArrayList();
+            ATM temp;
+            if (archivo.exists()) {
+                FileInputStream entrada = new FileInputStream(archivo);
+                ObjectInputStream objeto = new ObjectInputStream(entrada);
+                try {
+                    while ((temp = (ATM) objeto.readObject()) != null) {
+                        ATMs.add(temp);
+                    }
+                } catch (Exception e) {
+
+                }
+                objeto.close();
+                entrada.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void escribirArchivoATM() {
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        try {
+            fw = new FileOutputStream(archivo);
+            bw = new ObjectOutputStream(fw);
+            for (ATM t : ATMs) {
                 bw.writeObject(t);
             }
             bw.flush();

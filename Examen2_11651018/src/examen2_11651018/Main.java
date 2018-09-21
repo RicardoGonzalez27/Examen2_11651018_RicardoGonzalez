@@ -6,6 +6,7 @@
 package examen2_11651018;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -52,10 +53,6 @@ public class Main extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         newatm_ubicacion = new javax.swing.JTextField();
         newatm_id = new javax.swing.JTextField();
-        newatm_año = new javax.swing.JTextField();
-        newatm_mantenimiento = new javax.swing.JTextField();
-        newatm_cien = new javax.swing.JTextField();
-        newatm_quin = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -64,6 +61,11 @@ public class Main extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        newatm_quinientos = new javax.swing.JSpinner();
+        newatm_cien = new javax.swing.JSpinner();
+        cb_atmtemp = new javax.swing.JComboBox<>();
+        cb_atmnum = new javax.swing.JComboBox<>();
+        newatm_año = new javax.swing.JSpinner();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -147,10 +149,6 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel3.add(newatm_ubicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 170, -1));
         jPanel3.add(newatm_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 170, -1));
-        jPanel3.add(newatm_año, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 170, -1));
-        jPanel3.add(newatm_mantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 170, -1));
-        jPanel3.add(newatm_cien, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 170, -1));
-        jPanel3.add(newatm_quin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 170, -1));
 
         jLabel18.setText("Ubicacion");
         jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
@@ -175,21 +173,39 @@ public class Main extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton6.setText("Crear");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
         jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 260, 100));
+
+        newatm_quinientos.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jPanel3.add(newatm_quinientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 170, -1));
+
+        newatm_cien.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jPanel3.add(newatm_cien, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 170, -1));
+
+        cb_atmtemp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diario", "Semanal", "Mensual", "Anual" }));
+        jPanel3.add(cb_atmtemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 190, 100, -1));
+
+        cb_atmnum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jPanel3.add(cb_atmnum, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 60, -1));
+
+        newatm_año.setModel(new javax.swing.SpinnerNumberModel(1970, 1970, 2018, 1));
+        jPanel3.add(newatm_año, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 170, -1));
 
         javax.swing.GroupLayout CreacionATMLayout = new javax.swing.GroupLayout(CreacionATM.getContentPane());
         CreacionATM.getContentPane().setLayout(CreacionATMLayout);
         CreacionATMLayout.setHorizontalGroup(
             CreacionATMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CreacionATMLayout.createSequentialGroup()
-                .addGap(249, 249, 249)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         CreacionATMLayout.setVerticalGroup(
             CreacionATMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CreacionATMLayout.createSequentialGroup()
-                .addGap(259, 259, 259)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -277,17 +293,47 @@ public class Main extends javax.swing.JFrame {
             int afiliacion = 2018;
 
             if (cb_tipo.getSelectedItem().equals("Cliente")) {
+                administrarbinario ap = new administrarbinario("./Usuarios.lab");
+                ap.cargarArchivoUsuario();
                 Cliente u = new Cliente(id, contraseña, nombre, nombredos, apellido, apellidodos, Nacimiento, afiliacion);
-                
+                ap.getUsuarios().add(u);
+                ap.escribirArchivoUsuario();
+                System.out.println("Se guardo");
+
             } else if (cb_tipo.getSelectedItem().equals("Mantenimiento")) {
-                
+                administrarbinario ap = new administrarbinario("./Usuarios.lab");
+                ap.cargarArchivoUsuario();
                 Mantenimiento m = new Mantenimiento(id, contraseña, nombre, nombredos, apellido, apellidodos, Nacimiento, afiliacion);
+                ap.getUsuarios().add(m);
+                ap.escribirArchivoUsuario();
+                System.out.println("Se guardo");
             }
         } catch (Exception e) {
-
+            JOptionPane.showMessageDialog(CreacionUsuario, "Error en Creacion");
         }
 
     }//GEN-LAST:event_nuevousuarioMouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+
+        try {
+            String ubicacion = newatm_ubicacion.getText();
+            int ID = Integer.parseInt(newatm_id.getText());
+            int año = (int) newatm_año.getValue();
+            String mantenimiento = (cb_atmnum.getSelectedItem() + " " + cb_atmtemp.getSelectedItem());
+            int cien = (int) newatm_cien.getValue();
+            int quin = (int) newatm_cien.getValue();
+            administrarbinario ap = new administrarbinario("./ATMs.lab");
+            ap.cargarArchivoUsuario();
+            ATM a = new ATM(ubicacion, ID, año, mantenimiento, cien, quin);
+            ap.getATMs().add(a);
+            ap.escribirArchivoATM();
+            System.out.println("Se guardo");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(CreacionUsuario, "Error en Creacion");
+        }
+
+    }//GEN-LAST:event_jButton6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -327,6 +373,8 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog CreacionATM;
     private javax.swing.JDialog CreacionUsuario;
+    private javax.swing.JComboBox<String> cb_atmnum;
+    private javax.swing.JComboBox<String> cb_atmtemp;
     private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -353,11 +401,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField newatm_año;
-    private javax.swing.JTextField newatm_cien;
+    private javax.swing.JSpinner newatm_año;
+    private javax.swing.JSpinner newatm_cien;
     private javax.swing.JTextField newatm_id;
-    private javax.swing.JTextField newatm_mantenimiento;
-    private javax.swing.JTextField newatm_quin;
+    private javax.swing.JSpinner newatm_quinientos;
     private javax.swing.JTextField newatm_ubicacion;
     private javax.swing.JButton nuevousuario;
     private javax.swing.JPanel panel_usuarios;
@@ -370,5 +417,5 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField usuario_nombredos;
     // End of variables declaration//GEN-END:variables
 
-    ArrayList <Integer> ids = new ArrayList();
+    ArrayList<Integer> ids = new ArrayList();
 }
