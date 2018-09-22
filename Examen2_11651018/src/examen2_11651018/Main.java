@@ -18,6 +18,18 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
+        
+        administrarbinario ap = new administrarbinario("./ATMs.lab");
+        ap.cargarArchivoATM();
+        
+        System.out.println(ap.getATMs());
+        
+        administrarbinario au = new administrarbinario("./Usuario.lab");
+        au.cargarArchivoUsuario();
+        for (int i = 0; i < au.getUsuarios().size(); i++) {
+            System.out.println(au.getUsuarios().get(i));
+        }
+        System.out.println(au.getUsuarios());
         initComponents();
     }
 
@@ -72,8 +84,10 @@ public class Main extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        login_user = new javax.swing.JTextField();
+        login_pass = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         panel_usuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -210,6 +224,8 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setMaximumSize(new java.awt.Dimension(600, 600));
+        jPanel1.setMinimumSize(new java.awt.Dimension(500, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setText("Creacion de Usuario");
@@ -218,7 +234,7 @@ public class Main extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 320, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 320, -1));
 
         jButton2.setText("Creacion de ATM");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -226,21 +242,28 @@ public class Main extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 320, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 320, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setText("BANCO LOS CHAMBEADORES");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
         jTabbedPane1.addTab("Creacion", jPanel1);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.add(login_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 430, -1));
+        jPanel2.add(login_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 430, -1));
 
-        jTextField1.setText("jTextField1");
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 110, 430, -1));
+        jLabel10.setText("INICIO DE SESION");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
 
-        jTextField2.setText("jTextField2");
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 200, 430, -1));
+        jButton3.setText("Log In");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, -1));
 
         jTabbedPane1.addTab("Acceso", jPanel2);
 
@@ -252,7 +275,9 @@ public class Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 55, Short.MAX_VALUE))
         );
 
         pack();
@@ -324,7 +349,7 @@ public class Main extends javax.swing.JFrame {
             int cien = (int) newatm_cien.getValue();
             int quin = (int) newatm_cien.getValue();
             administrarbinario ap = new administrarbinario("./ATMs.lab");
-            ap.cargarArchivoUsuario();
+            ap.cargarArchivoATM();
             ATM a = new ATM(ubicacion, ID, año, mantenimiento, cien, quin);
             ap.getATMs().add(a);
             ap.escribirArchivoATM();
@@ -334,6 +359,12 @@ public class Main extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        administrarbinario ap = new administrarbinario("./ATMs.lab");
+        ap.cargarArchivoUsuario();
+
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -378,8 +409,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -399,8 +432,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField login_pass;
+    private javax.swing.JTextField login_user;
     private javax.swing.JSpinner newatm_año;
     private javax.swing.JSpinner newatm_cien;
     private javax.swing.JTextField newatm_id;

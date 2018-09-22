@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Richard
  */
-public class Cuenta{
+public class Cuenta   implements Serializable{
     private int NumCuenta;
     private int saldo;
     private int id_de_usuario;

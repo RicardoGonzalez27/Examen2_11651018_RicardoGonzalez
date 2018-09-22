@@ -5,11 +5,13 @@
  */
 package examen2_11651018;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Richard
  */
-public class Transaccion {
+public class Transaccion implements Serializable{
     
     private String descripcion;
     private String fecha;

@@ -16,25 +16,21 @@ import java.util.ArrayList;
  *
  * @author Richard
  */
-public class administrarbinario {
-
-    /**
-     *
-     * @author Richard
-     */
-    ArrayList <Usuario> usuarios = new ArrayList();
+public class administraratm {
+    
+    ArrayList <ATM> ATMs = new ArrayList();
     private File archivo;
 
-    public administrarbinario(String path) {
+    public administraratm(String path) {
         archivo = new File(path);
     }
 
-    public ArrayList<Usuario> getUsuarios() {
-        return usuarios;
+    public ArrayList<ATM> getATMs() {
+        return ATMs;
     }
 
-    public void setUsuarios(ArrayList<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    public void setATMs(ArrayList<ATM> ATMs) {
+        this.ATMs = ATMs;
     }
 
     public File getArchivo() {
@@ -47,24 +43,24 @@ public class administrarbinario {
 
     @Override
     public String toString() {
-        return "administrarusuarios{" + "usuarios=" + usuarios;
+        return "administraratm{" + "ATMs=" + ATMs;
     }
-
-    public void setUsuarios(Usuario u) {
-        this.usuarios.add(u);
+    
+    
+    public void setATM(ATM a) {
+        this.ATMs.add(a);
     }
-
-    public void cargarArchivoUsuario() {
+    
+    public void cargarArchivoATM() {
         try {
-            usuarios = new ArrayList();
-            Usuario temp;
+            ATMs = new ArrayList();
+            ATM temp;
             if (archivo.exists()) {
                 FileInputStream entrada = new FileInputStream(archivo);
                 ObjectInputStream objeto = new ObjectInputStream(entrada);
                 try {
-                    while ((temp = (Usuario) objeto.readObject()) != null) {
-                        System.out.println("entro");
-                        usuarios.add(temp);
+                    while ((temp = (ATM) objeto.readObject()) != null) {
+                        ATMs.add(temp);
                         System.out.println(temp);
                     }
                 } catch (Exception e) {
@@ -78,13 +74,13 @@ public class administrarbinario {
         }
     }
 
-    public void escribirArchivoUsuario() {
+    public void escribirArchivoATM() {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (Usuario t : usuarios) {
+            for (ATM t : ATMs) {
                 bw.writeObject(t);
             }
             bw.flush();
@@ -97,5 +93,4 @@ public class administrarbinario {
             }
         }
     }
-
 }

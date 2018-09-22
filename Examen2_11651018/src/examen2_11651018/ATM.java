@@ -5,17 +5,21 @@
  */
 package examen2_11651018;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Richard
  */
-public class ATM {
+public class ATM implements Serializable{
     private String ubicacion;
     private int id;
     private int año;
     private String  mantenimiento;
     private int cien;
     private int quinientos;
+    
+   
 
     public ATM() {
     }
