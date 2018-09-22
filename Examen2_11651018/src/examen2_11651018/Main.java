@@ -18,9 +18,9 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        
+
         initComponents();
-        
+
         hora h = new hora(lb_hora);
         Thread proceso1 = new Thread(h);
         proceso1.start();
@@ -36,7 +36,7 @@ public class Main extends javax.swing.JFrame {
             for (int i = 0; i < ids_atms.size(); i++) {
                 System.out.println((Integer) ids_atms.get(i));
             }
-            
+
             administrarbinario au = new administrarbinario("./Usuario.lab");
             au.cargarArchivoUsuario();
             for (int i = 0; i < au.getUsuarios().size(); i++) {
@@ -45,13 +45,13 @@ public class Main extends javax.swing.JFrame {
             for (int i = 0; i < ids_atms.size(); i++) {
                 System.out.println((Integer) ids_usuarios.get(i));
             }
-            
+
             intentos = 0;
             System.out.println(intentos);
         } catch (Exception e) {
             System.out.println("Oh no");
         }
-        
+
     }
 
     /**
@@ -483,7 +483,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void nuevousuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevousuarioMouseClicked
-        
+
         try {
             String nombre = usuario_nombre.getText();
             String nombredos = usuario_nombredos.getText();
@@ -493,7 +493,7 @@ public class Main extends javax.swing.JFrame {
             int Nacimiento = (int) usuario_nacimiento.getValue();
             int id = Integer.parseInt(usuario_id.getText());
             int afiliacion = 2018;
-            
+
             if (cb_tipo.getSelectedItem().equals("Cliente")) {
                 administrarbinario ap = new administrarbinario("./Usuarios.lab");
                 ap.cargarArchivoUsuario();
@@ -502,7 +502,7 @@ public class Main extends javax.swing.JFrame {
                 ap.escribirArchivoUsuario();
                 JOptionPane.showMessageDialog(CreacionUsuario, "Guardado con exito");
                 System.out.println("Se guardo");
-                
+
             } else if (cb_tipo.getSelectedItem().equals("Mantenimiento")) {
                 administrarbinario ap = new administrarbinario("./Usuarios.lab");
                 ap.cargarArchivoUsuario();
@@ -519,7 +519,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_nuevousuarioMouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        
+
         try {
             String ubicacion = newatm_ubicacion.getText();
             int ID = Integer.parseInt(newatm_id.getText());
@@ -548,7 +548,7 @@ public class Main extends javax.swing.JFrame {
         System.out.println(intentos);
         int control = 1;
         if (intentos < 6) {
-            
+
             for (int i = 0; i < ap.getUsuarios().size(); i++) {
                 if (((Usuario) ap.getUsuarios().get(i)).getId() == id && ((Usuario) ap.getUsuarios().get(i)).getContra().equals(pass)) {
                     if (((Usuario) ap.getUsuarios().get(i)) instanceof Cliente) {
@@ -566,24 +566,24 @@ public class Main extends javax.swing.JFrame {
                         intentos = 0;
                         control = 0;
                     }
-                    
+
                 }
             }
-            
+
             if (control == 1) {
                 intentos++;
                 JOptionPane.showMessageDialog(this, "Intentos restantes: " + (6 - intentos));
             }
-            
+
         } else {
             JOptionPane.showMessageDialog(this, "No se permiten mas intentos");
         }
-        
+
 
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-        
+
         NuevaCuenta.setModal(true);
         NuevaCuenta.pack();
         NuevaCuenta.setLocationRelativeTo(this);
@@ -596,7 +596,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_cuenta_numeroActionPerformed
 
     private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
-        
+
         administrarbinario ap = new administrarbinario("./Usuarios.lab");
         ap.cargarArchivoUsuario();
         int ident = Integer.parseInt(login_user.getText());
@@ -609,7 +609,7 @@ public class Main extends javax.swing.JFrame {
                     ((Cliente) ap.getUsuarios().get(i)).getCuentas().add(c);
                     ap.escribirArchivoUsuario();
                     JOptionPane.showMessageDialog(NuevaCuenta, "Guardado con Exito");
-                    
+
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(NuevaCuenta, "Revisar valores");
                 }
@@ -620,25 +620,37 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        
+
         administrarbinario ap = new administrarbinario("./Usuarios.lab");
         ap.cargarArchivoUsuario();
         int ident = Integer.parseInt(login_user.getText());
+        int cuenta = Integer.parseInt(JOptionPane.showInputDialog(ClienteLogIn, "Cuenta de la cual retirar dinero"));
         for (int i = 0; i < ap.getUsuarios().size(); i++) {
             if (((Usuario) ap.getUsuarios().get(i)).getId() == ident) {
                 try {
-                    
-                    
-                    ((Cliente) ap.getUsuarios().get(i)).getCuentas().get(i).setSaldo(10);
-                    ap.escribirArchivoUsuario();
-                    JOptionPane.showMessageDialog(NuevaCuenta, "Guardado con Exito");
-                    
+                    for (int j = 0; j < ((Cliente) ap.getUsuarios().get(i)).getCuentas().size(); j++) {
+                        if (((Cliente) ap.getUsuarios().get(i)).getCuentas().get(j).getNumCuenta() == cuenta) {
+                            
+                            int retiro = Integer.parseInt(JOptionPane.showInputDialog(ClienteLogIn, "Cuanto desea retirar?"));
+                            if (retiro > ((Cliente) ap.getUsuarios().get(i)).getCuentas().get(j).getSaldo()) {
+                                JOptionPane.showMessageDialog(NuevaCuenta, "Transaccion invalida");
+                            } else {
+                                int cambio = ((Cliente) ap.getUsuarios().get(i)).getCuentas().get(j).getSaldo() - retiro;
+                                ((Cliente) ap.getUsuarios().get(i)).getCuentas().get(j).setSaldo(cambio);
+                                ap.escribirArchivoUsuario();
+                                JOptionPane.showMessageDialog(NuevaCuenta, "Guardado con Exito");
+                            }
+
+                        }
+
+                    }
+
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(NuevaCuenta, "Revisar valores");
                 }
             }
         }
-        
+
     }//GEN-LAST:event_jButton5MouseClicked
 
     /**
