@@ -19,17 +19,18 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         
-        administrarbinario ap = new administrarbinario("./ATMs.lab");
+        administraratm ap = new administraratm("./ATMS.lab");
         ap.cargarArchivoATM();
-        
-        System.out.println(ap.getATMs());
+        for (int i = 0; i < ap.getATMs().size(); i++) {
+            System.out.println(((ATM) ap.getATMs().get(i)).getId());
+        }
         
         administrarbinario au = new administrarbinario("./Usuario.lab");
         au.cargarArchivoUsuario();
         for (int i = 0; i < au.getUsuarios().size(); i++) {
-            System.out.println(au.getUsuarios().get(i));
+            System.out.println(((Usuario) au.getUsuarios().get(i)).getId());
         }
-        System.out.println(au.getUsuarios());
+
         initComponents();
     }
 
@@ -348,7 +349,7 @@ public class Main extends javax.swing.JFrame {
             String mantenimiento = (cb_atmnum.getSelectedItem() + " " + cb_atmtemp.getSelectedItem());
             int cien = (int) newatm_cien.getValue();
             int quin = (int) newatm_cien.getValue();
-            administrarbinario ap = new administrarbinario("./ATMs.lab");
+            administraratm ap = new administraratm("./ATMs.lab");
             ap.cargarArchivoATM();
             ATM a = new ATM(ubicacion, ID, año, mantenimiento, cien, quin);
             ap.getATMs().add(a);
@@ -361,8 +362,15 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        administrarbinario ap = new administrarbinario("./ATMs.lab");
+        administrarbinario ap = new administrarbinario("./Usuarios.lab");
         ap.cargarArchivoUsuario();
+        int id = Integer.parseInt(login_user.getText());
+        String pass = login_pass.getText();
+        for (int i = 0; i < ap.getUsuarios().size(); i++) {
+            if ( ((Usuario) ap.getUsuarios().get(i) ).getId() == id && ((Usuario) ap.getUsuarios().get(i) ).getContra().equals(pass)) {
+                System.out.println("Entro");
+            }
+        }
 
     }//GEN-LAST:event_jButton3MouseClicked
 

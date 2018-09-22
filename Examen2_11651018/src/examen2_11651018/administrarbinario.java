@@ -63,7 +63,6 @@ public class administrarbinario {
                 ObjectInputStream objeto = new ObjectInputStream(entrada);
                 try {
                     while ((temp = (Usuario) objeto.readObject()) != null) {
-                        System.out.println("entro");
                         usuarios.add(temp);
                         System.out.println(temp);
                     }
