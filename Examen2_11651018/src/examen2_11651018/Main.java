@@ -20,6 +20,13 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         
         initComponents();
+        
+        hora h = new hora(lb_hora);
+        Thread proceso1 = new Thread(h);
+        proceso1.start();
+        hora hh = new hora(lb_hora2);
+        Thread proceso2 = new Thread(hh);
+        proceso2.start();
         try {
             administraratm ap = new administraratm("./ATMS.lab");
             ap.cargarArchivoATM();
@@ -119,11 +126,13 @@ public class Main extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        lb_hora = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         login_user = new javax.swing.JTextField();
         login_pass = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        lb_hora2 = new javax.swing.JLabel();
 
         panel_usuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -279,6 +288,11 @@ public class Main extends javax.swing.JFrame {
         jPanel4.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 310, 40));
 
         jButton5.setText("Retirar dinero de cualquiera de las cuentas");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
         jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 310, 40));
 
         jButton11.setText("Ingresar dinero a cualquiera de las cuentas");
@@ -403,6 +417,10 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setText("BANCO LOS CHAMBEADORES");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
+        lb_hora.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lb_hora.setText("00:00:00");
+        jPanel1.add(lb_hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
+
         jTabbedPane1.addTab("Creacion", jPanel1);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -419,6 +437,10 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, -1));
+
+        lb_hora2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lb_hora2.setText("00:00:00");
+        jPanel2.add(lb_hora2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
 
         jTabbedPane1.addTab("Acceso", jPanel2);
 
@@ -585,6 +607,7 @@ public class Main extends javax.swing.JFrame {
                     int saldo = Integer.parseInt(cuenta_saldo.getText());
                     Cuenta c = new Cuenta(cuenta, saldo, ident);
                     ((Cliente) ap.getUsuarios().get(i)).getCuentas().add(c);
+                    ap.escribirArchivoUsuario();
                     JOptionPane.showMessageDialog(NuevaCuenta, "Guardado con Exito");
                     
                 } catch (Exception e) {
@@ -595,6 +618,28 @@ public class Main extends javax.swing.JFrame {
         NuevaCuenta.setVisible(false);
 
     }//GEN-LAST:event_jButton13MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        
+        administrarbinario ap = new administrarbinario("./Usuarios.lab");
+        ap.cargarArchivoUsuario();
+        int ident = Integer.parseInt(login_user.getText());
+        for (int i = 0; i < ap.getUsuarios().size(); i++) {
+            if (((Usuario) ap.getUsuarios().get(i)).getId() == ident) {
+                try {
+                    
+                    
+                    ((Cliente) ap.getUsuarios().get(i)).getCuentas().get(i).setSaldo(10);
+                    ap.escribirArchivoUsuario();
+                    JOptionPane.showMessageDialog(NuevaCuenta, "Guardado con Exito");
+                    
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(NuevaCuenta, "Revisar valores");
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_jButton5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -684,6 +729,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lb_hora;
+    private javax.swing.JLabel lb_hora2;
     private javax.swing.JTextField login_pass;
     private javax.swing.JTextField login_user;
     private javax.swing.JSpinner newatm_año;
