@@ -102,6 +102,9 @@ public class Main extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        MantenimientoLogIn = new javax.swing.JDialog();
+        jPanel5 = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -295,6 +298,32 @@ public class Main extends javax.swing.JFrame {
 
         jButton12.setText("jButton12");
 
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton4.setText("jButton4");
+        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 41, -1, -1));
+
+        javax.swing.GroupLayout MantenimientoLogInLayout = new javax.swing.GroupLayout(MantenimientoLogIn.getContentPane());
+        MantenimientoLogIn.getContentPane().setLayout(MantenimientoLogInLayout);
+        MantenimientoLogInLayout.setHorizontalGroup(
+            MantenimientoLogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(MantenimientoLogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(MantenimientoLogInLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        MantenimientoLogInLayout.setVerticalGroup(
+            MantenimientoLogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(MantenimientoLogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(MantenimientoLogInLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setMaximumSize(new java.awt.Dimension(600, 600));
@@ -449,22 +478,26 @@ public class Main extends javax.swing.JFrame {
                 if (((Usuario) ap.getUsuarios().get(i)).getId() == id && ((Usuario) ap.getUsuarios().get(i)).getContra().equals(pass)) {
                     if (((Usuario) ap.getUsuarios().get(i)) instanceof Cliente) {
                         ClienteLogIn.setModal(true);
-                    ClienteLogIn.pack();
-                    ClienteLogIn.setLocationRelativeTo(this);
-                    ClienteLogIn.setVisible(true);
-                    intentos = 0;
-                    control = 0;
-                    }else if (((Usuario) ap.getUsuarios().get(i)) instanceof Mantenimiento){
+                        ClienteLogIn.pack();
+                        ClienteLogIn.setLocationRelativeTo(this);
+                        ClienteLogIn.setVisible(true);
                         intentos = 0;
-                    control = 0;
+                        control = 0;
+                    } else if (((Usuario) ap.getUsuarios().get(i)) instanceof Mantenimiento) {
+                        MantenimientoLogIn.setModal(true);
+                        MantenimientoLogIn.pack();
+                        MantenimientoLogIn.setLocationRelativeTo(this);
+                        MantenimientoLogIn.setVisible(true);
+                        intentos = 0;
+                        control = 0;
                     }
-                   
+
                 }
             }
 
             if (control == 1) {
-                JOptionPane.showMessageDialog(this, "Intentos restantes: " + (5 - intentos));
                 intentos++;
+                JOptionPane.showMessageDialog(this, "Intentos restantes: " + (6 - intentos));
             }
 
         } else {
@@ -475,11 +508,11 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-        
+
         administrarbinario ap = new administrarbinario("./Usuarios.lab");
         ap.cargarArchivoUsuario();
-        
-        
+
+
     }//GEN-LAST:event_jButton8MouseClicked
 
     /**
@@ -521,6 +554,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JDialog ClienteLogIn;
     private javax.swing.JDialog CreacionATM;
     private javax.swing.JDialog CreacionUsuario;
+    private javax.swing.JDialog MantenimientoLogIn;
     private javax.swing.JComboBox<String> cb_atmnum;
     private javax.swing.JComboBox<String> cb_atmtemp;
     private javax.swing.JComboBox<String> cb_tipo;
@@ -530,6 +564,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -557,6 +592,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField login_pass;
     private javax.swing.JTextField login_user;
