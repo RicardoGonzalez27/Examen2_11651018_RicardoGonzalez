@@ -18,20 +18,24 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        
+
+        initComponents();
+
         administraratm ap = new administraratm("./ATMS.lab");
         ap.cargarArchivoATM();
         for (int i = 0; i < ap.getATMs().size(); i++) {
-            System.out.println(((ATM) ap.getATMs().get(i)).getId());
+            System.out.println(((ATM) ap.getATMs().get(i)).toString());
         }
-        
+
         administrarbinario au = new administrarbinario("./Usuario.lab");
         au.cargarArchivoUsuario();
         for (int i = 0; i < au.getUsuarios().size(); i++) {
-            System.out.println(((Usuario) au.getUsuarios().get(i)).getId());
+            System.out.println(((Usuario) au.getUsuarios().get(i)).toString());
         }
 
-        initComponents();
+        intentos = 0;
+        System.out.println(intentos);
+
     }
 
     /**
@@ -79,6 +83,9 @@ public class Main extends javax.swing.JFrame {
         cb_atmtemp = new javax.swing.JComboBox<>();
         cb_atmnum = new javax.swing.JComboBox<>();
         newatm_año = new javax.swing.JSpinner();
+        ClienteLogIn = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -223,6 +230,32 @@ public class Main extends javax.swing.JFrame {
                 .addGap(0, 8, Short.MAX_VALUE))
         );
 
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton4.setText("jButton4");
+        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
+
+        javax.swing.GroupLayout ClienteLogInLayout = new javax.swing.GroupLayout(ClienteLogIn.getContentPane());
+        ClienteLogIn.getContentPane().setLayout(ClienteLogInLayout);
+        ClienteLogInLayout.setHorizontalGroup(
+            ClienteLogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(ClienteLogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ClienteLogInLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        ClienteLogInLayout.setVerticalGroup(
+            ClienteLogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(ClienteLogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ClienteLogInLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setMaximumSize(new java.awt.Dimension(600, 600));
@@ -324,6 +357,7 @@ public class Main extends javax.swing.JFrame {
                 Cliente u = new Cliente(id, contraseña, nombre, nombredos, apellido, apellidodos, Nacimiento, afiliacion);
                 ap.getUsuarios().add(u);
                 ap.escribirArchivoUsuario();
+                JOptionPane.showMessageDialog(CreacionUsuario, "Guardado con exito");
                 System.out.println("Se guardo");
 
             } else if (cb_tipo.getSelectedItem().equals("Mantenimiento")) {
@@ -332,6 +366,7 @@ public class Main extends javax.swing.JFrame {
                 Mantenimiento m = new Mantenimiento(id, contraseña, nombre, nombredos, apellido, apellidodos, Nacimiento, afiliacion);
                 ap.getUsuarios().add(m);
                 ap.escribirArchivoUsuario();
+                JOptionPane.showMessageDialog(CreacionUsuario, "Guardado con exito");
                 System.out.println("Se guardo");
             }
         } catch (Exception e) {
@@ -354,6 +389,7 @@ public class Main extends javax.swing.JFrame {
             ATM a = new ATM(ubicacion, ID, año, mantenimiento, cien, quin);
             ap.getATMs().add(a);
             ap.escribirArchivoATM();
+            JOptionPane.showMessageDialog(CreacionUsuario, "Guardado con exito");
             System.out.println("Se guardo");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(CreacionUsuario, "Error en Creacion");
@@ -366,11 +402,30 @@ public class Main extends javax.swing.JFrame {
         ap.cargarArchivoUsuario();
         int id = Integer.parseInt(login_user.getText());
         String pass = login_pass.getText();
-        for (int i = 0; i < ap.getUsuarios().size(); i++) {
-            if ( ((Usuario) ap.getUsuarios().get(i) ).getId() == id && ((Usuario) ap.getUsuarios().get(i) ).getContra().equals(pass)) {
-                System.out.println("Entro");
+        System.out.println(intentos);
+        int control = 1;
+        if (intentos < 6) {
+            
+            for (int i = 0; i < ap.getUsuarios().size(); i++) {
+                if (((Usuario) ap.getUsuarios().get(i)).getId() == id && ((Usuario) ap.getUsuarios().get(i)).getContra().equals(pass)) {
+                    ClienteLogIn.setModal(true);
+                    ClienteLogIn.pack();
+                    ClienteLogIn.setLocationRelativeTo(this);
+                    ClienteLogIn.setVisible(true);
+                    intentos = 0;
+                    control = 0;
+                }
             }
+            
+            if (control == 1) {
+                JOptionPane.showMessageDialog(this, "Intentos restantes: "+(5-intentos));
+                intentos++;
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "No se permiten mas intentos");
         }
+
 
     }//GEN-LAST:event_jButton3MouseClicked
 
@@ -410,6 +465,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog ClienteLogIn;
     private javax.swing.JDialog CreacionATM;
     private javax.swing.JDialog CreacionUsuario;
     private javax.swing.JComboBox<String> cb_atmnum;
@@ -418,6 +474,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -439,6 +496,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField login_pass;
     private javax.swing.JTextField login_user;
@@ -459,4 +517,5 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     ArrayList<Integer> ids = new ArrayList();
+    int intentos;
 }
