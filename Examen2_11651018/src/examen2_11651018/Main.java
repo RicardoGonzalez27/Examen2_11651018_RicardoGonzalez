@@ -18,7 +18,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-
+        
         initComponents();
         try {
             administraratm ap = new administraratm("./ATMS.lab");
@@ -29,7 +29,7 @@ public class Main extends javax.swing.JFrame {
             for (int i = 0; i < ids_atms.size(); i++) {
                 System.out.println((Integer) ids_atms.get(i));
             }
-
+            
             administrarbinario au = new administrarbinario("./Usuario.lab");
             au.cargarArchivoUsuario();
             for (int i = 0; i < au.getUsuarios().size(); i++) {
@@ -38,13 +38,13 @@ public class Main extends javax.swing.JFrame {
             for (int i = 0; i < ids_atms.size(); i++) {
                 System.out.println((Integer) ids_usuarios.get(i));
             }
-
+            
             intentos = 0;
             System.out.println(intentos);
         } catch (Exception e) {
             System.out.println("Oh no");
         }
-
+        
     }
 
     /**
@@ -101,10 +101,19 @@ public class Main extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
         MantenimientoLogIn = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
+        NuevaCuenta = new javax.swing.JDialog();
+        jPanel6 = new javax.swing.JPanel();
+        cuenta_saldo = new javax.swing.JTextField();
+        cuenta_numero = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -274,26 +283,23 @@ public class Main extends javax.swing.JFrame {
 
         jButton11.setText("Ingresar dinero a cualquiera de las cuentas");
         jPanel4.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 310, 40));
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 40, 10));
 
         javax.swing.GroupLayout ClienteLogInLayout = new javax.swing.GroupLayout(ClienteLogIn.getContentPane());
         ClienteLogIn.getContentPane().setLayout(ClienteLogInLayout);
         ClienteLogInLayout.setHorizontalGroup(
             ClienteLogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(ClienteLogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ClienteLogInLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(ClienteLogInLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         ClienteLogInLayout.setVerticalGroup(
             ClienteLogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(ClienteLogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ClienteLogInLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(ClienteLogInLayout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
 
         jButton12.setText("jButton12");
@@ -323,6 +329,53 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel6.add(cuenta_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 170, -1));
+
+        cuenta_numero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuenta_numeroActionPerformed(evt);
+            }
+        });
+        jPanel6.add(cuenta_numero, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 170, -1));
+
+        jLabel12.setText("Saldo");
+        jPanel6.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
+
+        jLabel14.setText("Numero de la Cuenta");
+        jPanel6.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
+
+        jButton13.setText("Crear");
+        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton13MouseClicked(evt);
+            }
+        });
+        jPanel6.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 130, -1));
+
+        javax.swing.GroupLayout NuevaCuentaLayout = new javax.swing.GroupLayout(NuevaCuenta.getContentPane());
+        NuevaCuenta.getContentPane().setLayout(NuevaCuentaLayout);
+        NuevaCuentaLayout.setHorizontalGroup(
+            NuevaCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(NuevaCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(NuevaCuentaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        NuevaCuentaLayout.setVerticalGroup(
+            NuevaCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(NuevaCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(NuevaCuentaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -408,7 +461,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void nuevousuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevousuarioMouseClicked
-
+        
         try {
             String nombre = usuario_nombre.getText();
             String nombredos = usuario_nombredos.getText();
@@ -418,7 +471,7 @@ public class Main extends javax.swing.JFrame {
             int Nacimiento = (int) usuario_nacimiento.getValue();
             int id = Integer.parseInt(usuario_id.getText());
             int afiliacion = 2018;
-
+            
             if (cb_tipo.getSelectedItem().equals("Cliente")) {
                 administrarbinario ap = new administrarbinario("./Usuarios.lab");
                 ap.cargarArchivoUsuario();
@@ -427,7 +480,7 @@ public class Main extends javax.swing.JFrame {
                 ap.escribirArchivoUsuario();
                 JOptionPane.showMessageDialog(CreacionUsuario, "Guardado con exito");
                 System.out.println("Se guardo");
-
+                
             } else if (cb_tipo.getSelectedItem().equals("Mantenimiento")) {
                 administrarbinario ap = new administrarbinario("./Usuarios.lab");
                 ap.cargarArchivoUsuario();
@@ -444,7 +497,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_nuevousuarioMouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-
+        
         try {
             String ubicacion = newatm_ubicacion.getText();
             int ID = Integer.parseInt(newatm_id.getText());
@@ -473,7 +526,7 @@ public class Main extends javax.swing.JFrame {
         System.out.println(intentos);
         int control = 1;
         if (intentos < 6) {
-
+            
             for (int i = 0; i < ap.getUsuarios().size(); i++) {
                 if (((Usuario) ap.getUsuarios().get(i)).getId() == id && ((Usuario) ap.getUsuarios().get(i)).getContra().equals(pass)) {
                     if (((Usuario) ap.getUsuarios().get(i)) instanceof Cliente) {
@@ -491,29 +544,57 @@ public class Main extends javax.swing.JFrame {
                         intentos = 0;
                         control = 0;
                     }
-
+                    
                 }
             }
-
+            
             if (control == 1) {
                 intentos++;
                 JOptionPane.showMessageDialog(this, "Intentos restantes: " + (6 - intentos));
             }
-
+            
         } else {
             JOptionPane.showMessageDialog(this, "No se permiten mas intentos");
         }
-
+        
 
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-
-        administrarbinario ap = new administrarbinario("./Usuarios.lab");
-        ap.cargarArchivoUsuario();
-
+        
+        NuevaCuenta.setModal(true);
+        NuevaCuenta.pack();
+        NuevaCuenta.setLocationRelativeTo(this);
+        NuevaCuenta.setVisible(true);
 
     }//GEN-LAST:event_jButton8MouseClicked
+
+    private void cuenta_numeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuenta_numeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cuenta_numeroActionPerformed
+
+    private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
+        
+        administrarbinario ap = new administrarbinario("./Usuarios.lab");
+        ap.cargarArchivoUsuario();
+        int ident = Integer.parseInt(login_user.getText());
+        for (int i = 0; i < ap.getUsuarios().size(); i++) {
+            if (((Usuario) ap.getUsuarios().get(i)).getId() == ident) {
+                try {
+                    int cuenta = Integer.parseInt(cuenta_numero.getText());
+                    int saldo = Integer.parseInt(cuenta_saldo.getText());
+                    Cuenta c = new Cuenta(cuenta, saldo, ident);
+                    ((Cliente) ap.getUsuarios().get(i)).getCuentas().add(c);
+                    JOptionPane.showMessageDialog(NuevaCuenta, "Guardado con Exito");
+                    
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(NuevaCuenta, "Revisar valores");
+                }
+            }
+        }
+        NuevaCuenta.setVisible(false);
+
+    }//GEN-LAST:event_jButton13MouseClicked
 
     /**
      * @param args the command line arguments
@@ -555,13 +636,17 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JDialog CreacionATM;
     private javax.swing.JDialog CreacionUsuario;
     private javax.swing.JDialog MantenimientoLogIn;
+    private javax.swing.JDialog NuevaCuenta;
     private javax.swing.JComboBox<String> cb_atmnum;
     private javax.swing.JComboBox<String> cb_atmtemp;
     private javax.swing.JComboBox<String> cb_tipo;
+    private javax.swing.JTextField cuenta_numero;
+    private javax.swing.JTextField cuenta_saldo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -573,6 +658,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -593,7 +681,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField login_pass;
     private javax.swing.JTextField login_user;
     private javax.swing.JSpinner newatm_año;
